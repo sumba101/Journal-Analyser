@@ -29,7 +29,7 @@ docutils==0.16
 entrypoints==0.3
 filelock==3.0.12
 gast==0.3.3
-gensim==3.8.0
+# gensim==3.8.0
 google-api-core==1.17.0
 google-auth==1.14.1
 google-auth-oauthlib==0.4.1
@@ -96,11 +96,11 @@ six==1.14.0
 # smart-open @ file:///tmp/build/80754af9/smart_open_1594236772807/work
 soupsieve==2.0
 sqlparse==0.3.1
-tensorboard==2.2.1
+# tensorboard==2.2.1
 # tensorboard-plugin-wit==1.6.0
-tensorflow==2.2.0
-tensorflow-estimator==2.2.0
-tensorflow-hub==0.8.0
+# tensorflow==2.2.0
+# tensorflow-estimator==2.2.0
+# tensorflow-hub==0.8.0
 termcolor==1.1.0
 terminado==0.8.3
 testpath==0.4.4
@@ -112,6 +112,5 @@ wcwidth==0.1.7
 webencodings==0.5.1
 Werkzeug==1.0.1
 widgetsnbextension==3.5.1
-wikipedia==1.4.0
 wrapt==1.12.1
 zipp==3.1.0

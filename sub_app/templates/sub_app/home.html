@@ -2,18 +2,13 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="header_home">
-  <h1 style="color: #2b2b2b">Template generator</h1>
+  <h1 style="color: rgb(73, 51, 51)">Journal Analyser</h1>
 </div>
 <section class="section1">
     <div class="post-content">
-        <p> Enter the word for which Wikipedia article questions must be generated </p>
+        <p> Journal Analyser is a webapp that acts as a personal Hindi journal for each user. The application uses latest advancement in Natural Language Processing to track and analyse emotion and distress in user </p>
         <br/>
-        <form method="post">
-            {% csrf_token %}
-            {{ query|crispy }}
-            <br />
-            <button type="submit" class="btn btn-success">Submit</button>
-        </form>
-        </div>
+        <p> The goal of the application is to allow people to track their emotional trend across time and act as early warning system against depression </p>
+      </div>
 </section>
 {% endblock content %}

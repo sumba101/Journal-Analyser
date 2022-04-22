@@ -1,4 +1,3 @@
-
 form {
 	width: 500px;
 	margin: 0 auto;
@@ -56,25 +55,25 @@ ul {
 /*************************************************************
   HEADER
 **************************************************************/
-/*header {*/
-/*  position: relative;*/
-/*  min-height: 100vh;*/
-/*  width: 100%;*/
-/*  transform-style: inherit;*/
-/*  z-index: -1;*/
-/*}*/
+header {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  transform-style: inherit;
+  z-index: -1;
+}
 
-/*header::before {*/
-/*  content: '';*/
-/*  position: absolute;*/
-/*  top: 0; left: 0; right: 0; bottom: 0;*/
-/*  display: block;*/
-/*  background: url( ./scraper_bg.webp ) top center;*/
-/*  background-size: cover;*/
-/*  transform: translateZ(-1px) scale(2.1);*/
-/*  min-height: 100%;*/
-/*  z-index: -2;*/
-/*}*/
+header::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: block;
+  background: url( ./scraper_bg.webp ) top center;
+  background-size: cover;
+  transform: translateZ(-1px) scale(2.1);
+  min-height: 100%;
+  z-index: -2;
+}
 .header_params {
   position: relative;
   min-height: 100vh;
@@ -88,7 +87,26 @@ ul {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   display: block;
-  background: url(results.png) top center;
+  background: url(./params_bg.jpeg) top center;
+  background-size: cover;
+  transform: translateZ(-1px) scale(2.1);
+  min-height: 100%;
+  z-index: -2;
+}
+.header_results {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  transform-style: inherit;
+  z-index: -1;
+}
+
+.header_results::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: block;
+  background: url(./results_bg.png) top center;
   background-size: cover;
   transform: translateZ(-1px) scale(2.1);
   min-height: 100%;
@@ -107,7 +125,26 @@ ul {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   display: block;
-  background: url( questions.png ) top center;
+  background: url( ./analyser_bg.gif ) top center;
+  background-size: cover;
+  transform: translateZ(-1px) scale(2.1);
+  min-height: 100%;
+  z-index: -2;
+}
+.header_contact {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  transform-style: inherit;
+  z-index: -1;
+}
+
+.header_contact::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: block;
+  background: url( ./contact_bg.jpeg ) top center;
   background-size: cover;
   transform: translateZ(-1px) scale(2.1);
   min-height: 100%;
@@ -126,7 +163,7 @@ ul {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   display: block;
-  background: url(home.jpg) top center;
+  background: url(./home.jpeg) top center;
   background-size: cover;
   transform: translateZ(-1px) scale(2.1);
   min-height: 100%;
@@ -151,6 +188,17 @@ section {
   z-index: 1;
 }
 
+.section2::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: block;
+  /* background: url(https://lh3.googleusercontent.com/tVB5a2EB8NQCbVKK0x-3VfteM4XXVy6kJ5gtaxuLvowihGCuXcfZU3eyLfRe3GLni7p0JqJhxg=w16383) top center; */
+  background-size: cover;
+  transform: translateZ(-.5px) scale(1.6);
+  z-index: -1;
+}
+
 /*************************************************************
   HEADINGS
 **************************************************************/
@@ -171,6 +219,10 @@ h1 {
   box-shadow: none;
 }
 
+.section2 h1 {
+  transform: translateZ(-.3px) scale(1.3) translate(-39%, -39%);
+  z-index: 3;
+}
 
 /*************************************************************
   BASIC STYLES
@@ -188,6 +240,9 @@ html {
   overflow: hidden;
   height: 100%;
 }
+
+
+
 
 table {
   font-family: arial, sans-serif;

@@ -12,14 +12,25 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'sub_app/main.css' %}">
 
-        <title>Wikipedia template generation</title>
+        <title>Journal Analyser</title>
 </head>
 <body>
 
 {#contains basic elements shared by all pages such as navbar and a block start and end#}
     <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-steel">
-      <a class="navbar-brand" href="{% url 'main_home' %}">Wiki template generation</a>
+      <a class="navbar-brand" href="{% url 'main_home' %}">Journal Analyser</a>
       <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'main_journal' %}"><h5> Make Entry</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'main_home' %}"><h5>Home</h5></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'main_analysis' %}"><h5>Analysis</h5></a>
+          </li>
+        </ul>
       </div>
     </nav>
 
