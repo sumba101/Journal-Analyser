@@ -125,7 +125,7 @@ header::before {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   display: block;
-  background: url( ./analyser_bg.gif ) top center;
+  background: url( ./questions.png ) top center;
   background-size: cover;
   transform: translateZ(-1px) scale(2.1);
   min-height: 100%;
