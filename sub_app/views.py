@@ -11,13 +11,16 @@ def home(request):
     return render( request, 'sub_app/home.html')
 
 def save_obj(obj, name ):
-    with open('sub_app/entries_collected/' + name + '.pkl', 'rb') as f:
-        curr_data = pickle.load(f)
+    try:
+        with open('sub_app/entries_collected/' + name + '.pkl', 'rb') as f:
+            curr_data = pickle.load(f)
+    except:
+        curr_data=list()
 #  Curr_data is a list of dicts, each dict contains "entry" and "datetime" as keys and values
     curr_data.append(obj)
 
     with open('sub_app/entries_collected/'+ name + '.pkl', 'wb') as f:
-        pickle.dump(obj, f, pickle.HIGHEST_PROTOCOL)
+        pickle.dump(obj, f)
 
 def load_obj(name):
     with open('sub_app/entries_collected/' + name + '.pkl', 'rb') as f:
@@ -27,8 +30,10 @@ def journal(request):
     if (request.methode== 'POST'):
         form = JournalEntry(request.POST)
         if form.is_valid():
-            form["datetime"] = datetime.now()
-            print(form.cleaned_data)
+            temp = dict()
+            temp["datetime"] = datetime.now()
+            temp["entry"] = form.cleaned_data["entry"]
+            print(temp)
             save_obj(form,"Anand")
             return HttpResponseRedirect( '/' )
         else:
@@ -47,4 +52,4 @@ def analysis(request):
     # "entry" is a list of sentences that together form the journal entry
     # "emotions" is a list of emotions, equal in size to entry, that denotes respective emotions of sentences
     # "emotions" have values ['Angry','Happy','Sad','Neutral']
-    return render( request, 'sub_app/result.html',{"i"})
+    return render( request, 'sub_app/result.html',{"result":user_data})
