@@ -52,4 +52,4 @@ def analysis(request):
     # "entry" is a list of sentences that together form the journal entry
     # "emotions" is a list of emotions, equal in size to entry, that denotes respective emotions of sentences
     # "emotions" have values ['Angry','Happy','Sad','Neutral']
-    return render( request, 'sub_app/result.html',{"result":user_data})
+    return render( request, 'sub_app/result.html',{"result":user_data, "number":3, })
