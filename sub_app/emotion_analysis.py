@@ -29,16 +29,22 @@ def generate_analysis(user_data):
     # Param user_data is a list of dictionaries, each dict has "entry" and "datetime" as keys and values 
     # Entry is from a specific day    
     analysis_data = list()
+    emotion = dict()
     for day in user_data:
         temp = dict()
         date_time = day["datetime"]
         entry = day["entry"].split(".")
         emotions = predict_emotion(entry)   
-        temp["datetime"]=date_time
-        temp["entry"]=entry
+        temp["datetime"]=date_time.strftime('%Y-%m-%d')
+        # temp["entry"]=entry
         temp["emotion"]=[ convert(e) for e in emotions]
         assert len(entry) == len(emotions)
+        for e in temp["emotion"]:
+            if e in emotion:
+                emotion[e]+=1
+            else:
+                emotion[e]=1
         analysis_data.append(temp)
 
-    return analysis_data
+    return analysis_data,emotion 
 

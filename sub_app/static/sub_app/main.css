@@ -55,7 +55,7 @@ ul {
 /*************************************************************
   HEADER
 **************************************************************/
-header {
+/* header {
   position: relative;
   min-height: 100vh;
   width: 100%;
@@ -92,7 +92,7 @@ header::before {
   transform: translateZ(-1px) scale(2.1);
   min-height: 100%;
   z-index: -2;
-}
+} */
 .header_results {
   position: relative;
   min-height: 100vh;
@@ -106,7 +106,7 @@ header::before {
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   display: block;
-  background: url(./results_bg.png) top center;
+  background: url(./results.png) top center;
   background-size: cover;
   transform: translateZ(-1px) scale(2.1);
   min-height: 100%;
@@ -131,25 +131,7 @@ header::before {
   min-height: 100%;
   z-index: -2;
 }
-.header_contact {
-  position: relative;
-  min-height: 100vh;
-  width: 100%;
-  transform-style: inherit;
-  z-index: -1;
-}
 
-.header_contact::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  display: block;
-  background: url( ./contact_bg.jpeg ) top center;
-  background-size: cover;
-  transform: translateZ(-1px) scale(2.1);
-  min-height: 100%;
-  z-index: -2;
-}
 .header_home {
   position: relative;
   min-height: 100vh;

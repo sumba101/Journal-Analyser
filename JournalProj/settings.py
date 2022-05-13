@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jchart',
     'crispy_forms',
     'sub_app.apps.SubAppConfig',
     'django.contrib.admin',

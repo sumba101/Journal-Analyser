@@ -1,124 +1,5 @@
 {% extends "sub_app/base.html" %}
 {% load crispy_forms_tags %}
-{% block scripts %}
-<script>
-    String.prototype.splice = function(idx, rem, str) {
-        return this.slice(0, idx) + str + this.slice(idx + Math.abs(rem));
-    };
-
-    var no_of_charts= 3
-    console.log(no_of_charts);
-
-    var Names={};
-    var Freq={};
-    var Labels=[];
-
-    var itr=0;
-    {% for k in name.keys %}
-        Labels[itr]='{{k}}';
-        itr+=1;
-    {% endfor %}
-
-    {% for k,val in name.items %}
-        temp=[];
-        itr=0;
-        {% for v in val %}
-            temp[itr]="{{v}}";
-            itr+=1;
-        {% endfor %}
-        Names['{{k}}']=temp;
-    {% endfor %}
-
-    {% for k,val in freq.items %}
-        temp=[];
-        itr=0;
-        {% for v in val %}
-            temp[itr]="{{v}}";
-            itr+=1;
-        {% endfor %}
-
-        Freq['{{k}}']=temp;
-    {% endfor %}
-
-    var chart=[];
-    var background_colors=[];
-
-    function getRandomColor() {
-            var letters = '0123456789ABCDEF'.split('');
-            var color = '#';
-            for (var i = 0; i < 6; i++ ) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-    }
-
-    for (let i=0 ; i< Names[Labels[0]].length; i++){
-        background_colors[i]=getRandomColor()
-    }
-
-    var name='myChart0';
-    var ctx = document.getElementById(name).getContext('2d');
-    var myChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: Names[Labels[0]],
-                datasets: [{
-                    label:Labels[0],
-                    data: Freq[Labels[0]],
-                    backgroundColor: background_colors,
-                    borderWidth: 1
-                }]
-            }
-       });
-
-
-    var dot_template_st='<li data-target="#myCarousel" data-slide-to="';
-    var dot_template_end='"></li>\n';
-
-    var chart_template_st='<div class="item ">\n      <canvas id="myChart';
-    var chart_template_end='" width="400" height="400"></canvas>\n</div>\n';
-
-    function add() {
-        for (let i =1; i<no_of_charts;i++){
-            $('.carousel-inner').append($(chart_template_st+i.toString()+chart_template_end))
-        }
-
-        for (let i=1; i<no_of_charts; i++){
-            $('.carousel-indicators').append($(dot_template_st+i.toString()+dot_template_end))
-        }
-
-        for (let i=1; i<no_of_charts; i++){
-            var chartname='myChart'+i.toString();
-            var temp_ct = document.getElementById(chartname).getContext('2d');
-
-            for (let j=1 ; j< Names[Labels[i]].length; j++){
-                    background_colors[j]=getRandomColor()
-            }
-
-            chart.push(new Chart(temp_ct, {
-                    type: 'pie',
-                    data: {
-                        labels: Names[Labels[i]],
-                        datasets: [{
-                            label:Labels[i],
-                            data: Freq[Labels[i]],
-                            backgroundColor: background_colors,
-                            borderWidth: 1
-                        }]
-                    }
-               }));
-        }
-
-    }
-
-    window.onload=add;
-</script>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-{% endblock scripts %}
 
 {% block content %}
 <div class="header_results">
@@ -127,36 +8,11 @@
 <section class="section1">
     <div class="post-content">
 <!--HERE WE PRINT THE ANSWERS-->
-<h3 style="width: 500px; margin: 0 auto;"> The Following is the analysis from Journal <h3>
+<h3 style="width: 500px; margin: 0 auto;"> The Following is the analysis from Journal for {{ emote }} <h3>
 
-<div class="container">
-
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-
-<!--          need to add the indicators dynamically at the start of the page-->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-      <div class="item active">
-            <canvas id="myChart0" width="400" height="400"></canvas>
-      </div>
+    <div class="container">
+        {{ line_chart.as_html }}
     </div>
-
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <span class="glyphicon glyphicon-chevron-left"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-</div>
 
 </div>
 </section>
