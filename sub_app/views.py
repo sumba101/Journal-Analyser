@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
+import numpy as np
 from .forms import JournalEntry
 from .emotion_analysis import generate_analysis
 from jchart import Chart
@@ -44,21 +44,30 @@ def journal(request):
     form = JournalEntry()
     return render( request, 'sub_app/app.html',{'form':form} )
 
-class TimeSeriesChart(Chart):
-    chart_type = 'line'
-    scales = {
-        'xAxes': [Axes(type='time', position='bottom')],
-    }
-    def set_data(self, analysis,emote):
-        self.data = [ { 'y':ele["emotion"].count(emote) ,'x': ele["datetime"]}  for ele in analysis] 
 
-    def get_datasets(self, *args, **kwargs):
-        
-        return [DataSet(
-            type='line',
-            label='Time Series',
-            data=self.data,
-        )]
+class BarChart(Chart):
+    chart_type = 'bar'
+
+    def set_data(self, analysis,emote):
+        self.labels = [ ele["datetime"] for ele in analysis]
+        self.data = [ ele["emotion"].count(emote) for ele in analysis]
+        # self.data = [ { 'y':ele["emotion"].count(emote) ,'x': ele["datetime"]}  for ele in analysis] 
+
+    def get_labels(self, **kwargs):
+        return self.labels
+
+    def get_datasets(self, **kwargs):
+        colors = list()
+
+        temp = list(np.random.choice(range(256), size=3))
+        colors = [(rgba(temp[0],temp[1],temp[2],0.3)) for _ in range(len(self.labels))]
+
+        return [DataSet(label='Bar Chart',
+                        data=self.data,
+                        borderWidth=1,
+                        backgroundColor=colors,
+                        borderColor=colors)]
+
 
 class PieChart(Chart):
     chart_type = 'pie'
@@ -76,7 +85,7 @@ class PieChart(Chart):
             "#FF6384",
             "#36A2EB",
             "#FFCE56",
-            "#FFCE32"
+            "#90EE90"
         ]
         return [DataSet(data=data,
                         label="Overall Emotion",
@@ -90,7 +99,7 @@ def analysis_2(request):
     print("="*5)        
     print(analysis_results)
     print("="*5)        
-    pie = TimeSeriesChart()
+    pie = BarChart()
     pie.set_data(analysis_results,"Angry")
 
     # Analysis_results is a list of dictionaries
@@ -107,7 +116,7 @@ def analysis_3(request):
     print("="*5)        
     print(analysis_results)
     print("="*5)        
-    pie = TimeSeriesChart()
+    pie = BarChart()
     pie.set_data(analysis_results,"Happy")
 
     # Analysis_results is a list of dictionaries
@@ -124,7 +133,7 @@ def analysis_4(request):
     print("="*5)        
     print(analysis_results)
     print("="*5)        
-    pie = TimeSeriesChart()
+    pie = BarChart()
     pie.set_data(analysis_results,"Sad")
 
     # Analysis_results is a list of dictionaries
@@ -141,7 +150,7 @@ def analysis_5(request):
     print("="*5)        
     print(analysis_results)
     print("="*5)        
-    pie = TimeSeriesChart()
+    pie = BarChart()
     pie.set_data(analysis_results,"Neutral")
 
     # Analysis_results is a list of dictionaries

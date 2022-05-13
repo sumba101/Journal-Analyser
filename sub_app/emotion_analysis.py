@@ -35,8 +35,7 @@ def generate_analysis(user_data):
         date_time = day["datetime"]
         entry = day["entry"].split(".")
         emotions = predict_emotion(entry)   
-        temp["datetime"]=date_time.strftime('%Y-%m-%d')
-        # temp["entry"]=entry
+        temp["datetime"]= date_time.strftime('%Y-%m-%d')
         temp["emotion"]=[ convert(e) for e in emotions]
         assert len(entry) == len(emotions)
         for e in temp["emotion"]:
